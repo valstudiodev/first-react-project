@@ -4,8 +4,14 @@ import tailwindcss from '@tailwindcss/vite';
 import path from 'path';
 
 export default defineConfig(({ command }) => {
-  const isBuild = command === 'build';
-  const base = isBuild ? '/first-react-project/' : '/';
+  // Netlify автоматично передає NETLIFY=true під час збірки
+  const isNetlify = process.env.NETLIFY === 'true';
+  const isGitHubPages = process.env.GITHUB_PAGES === 'true' || process.env.DEPLOY_ENV === 'github';
+
+  let base = '/';
+  if (command === 'build' && isGitHubPages) {
+    base = '/first-react-project/';
+  }
 
   return {
     base,
@@ -21,14 +27,14 @@ export default defineConfig(({ command }) => {
     resolve: {
       alias: {
         '@': path.resolve(__dirname, './src'),
-        'assets': path.resolve(__dirname, './src/assets'),
-        'components': path.resolve(__dirname, './src/components'),
-        'data': path.resolve(__dirname, './src/constants'),
-        'pages': path.resolve(__dirname, './src/pages'),
-        'router': path.resolve(__dirname, './src/router'),
-        'shared': path.resolve(__dirname, './src/shared'),
-        'styles': path.resolve(__dirname, './src/styles'),
-        'types': path.resolve(__dirname, './src/types'),
+        assets: path.resolve(__dirname, './src/assets'),
+        components: path.resolve(__dirname, './src/components'),
+        data: path.resolve(__dirname, './src/constants'),
+        pages: path.resolve(__dirname, './src/pages'),
+        router: path.resolve(__dirname, './src/router'),
+        shared: path.resolve(__dirname, './src/shared'),
+        styles: path.resolve(__dirname, './src/styles'),
+        types: path.resolve(__dirname, './src/types'),
       },
     },
     server: {
