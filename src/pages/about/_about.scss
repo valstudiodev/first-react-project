@@ -1,0 +1,6 @@
+@use '../../styles/settings/settings' as *;
+
+.page-about__title {
+  @include adaptiveValue('font-size', 60, 20);
+  text-align: center;
+}

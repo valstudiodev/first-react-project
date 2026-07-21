@@ -1,0 +1,140 @@
+@use "sass:math";
+@use '../settings/settings' as *;
+@use '../abstracts/functions' as *;
+
+// ===========================================================================================
+// -----------------------------
+// body-styles
+// -----------------------------
+body {
+   font-family: "Poppins", sans-serif;
+   line-height: 1.5;
+   color: #000;
+   scrollbar-gutter: stable;
+
+   &.scroll-lock {
+      overflow: clip;
+      touch-action: none;
+      overscroll-behavior: none;
+
+      &.menu-open {
+         overflow: clip;
+      }
+   }
+}
+// .wrapper {
+//    min-height: 100svh;
+//    display: flex;
+//    flex-direction: column;
+//    overflow: clip;
+
+//    >main {
+//       flex-grow: 1;
+//    }
+// }
+
+// h1 {
+//   font-size: 40px;
+//   text-align: center;
+// }
+
+
+
+// ===========================================================================================
+// -----------------------------
+// class
+// -----------------------------
+// [class*="__container"] {
+//    max-width: toRem($containerWidth);
+//    padding-inline: toRem(math.div($containerPadding, 2));
+//    margin: 0 auto;
+// }
+// [class*="__container-sm"] {
+//   max-width: toRem(1000);
+//   padding-inline: toRem(math.div($containerPadding, 2));
+//   margin: 0 auto;
+// }
+// [class*="__container-med"] {
+//   max-width: toRem(1230);
+//   padding-inline: toRem(math.div($containerPadding, 2));
+//   margin: 0 auto;
+// }
+// [class*="__container-big"] {
+//   max-width: toRem(1420);
+//   padding-inline: toRem(math.div($containerPadding, 2));
+//   margin: 0 auto;
+// }
+
+
+// ===========================================================================================
+// -----------------------------
+// data-input
+// -----------------------------
+// --- 2. MOUSE MODE ---
+html[data-input="mouse"] {
+   :focus:not(:focus-visible) {
+      outline: none;
+   }
+
+   &:focus-visible {
+      .lang-currency__group {
+         &::before {
+            rotate: 180deg;
+         }
+      }
+   }
+
+}
+// --- 1. KEYBOARD MODE ---
+html[data-input="keyboard"] {
+   :focus-visible {
+      outline: toRem(2) solid #000;
+      outline-offset: toRem(4);
+   }
+
+   :focus-within {
+    .cart {
+      background-color: grey;
+      .cart__btn {
+        translate: 0 0;
+        opacity: 1;
+      }
+      .cart__link {
+        background-color: pink;
+        color: green;
+      }
+    }
+   }
+
+   & footer :focus-visible {
+      // outline-color: $white;
+   }  
+}
+// --- 3. TOUCH MODE ---
+html[data-input="touch"] {
+   .menu-dropdown__item--submenu {
+      &.is-active {
+         .menu-dropdown__link {
+            &::before {
+               rotate: 0deg;
+            }
+         }
+      }
+   }
+  
+   &:focus-visible {
+   
+   }
+
+   .cart {
+    background-color: yellow;
+    &__btn {
+      translate: 0 0;
+      opacity: 1;
+    }
+    &__link {
+      background-color: red;
+      color: black;
+    }
+   }
+}

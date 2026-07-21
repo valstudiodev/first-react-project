@@ -1,0 +1,15 @@
+@utility flex-center {
+  @apply flex items-center justify-center;
+}
+
+@utility flex-c-hor {
+  @apply flex items-center;
+}
+
+@utility flex-col-start {
+  @apply flex flex-col items-start; 
+}
+
+@utility hover-base {
+  @apply transition-all duration-300;
+}
