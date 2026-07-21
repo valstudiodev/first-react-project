@@ -4,14 +4,11 @@ import tailwindcss from '@tailwindcss/vite';
 import path from 'path';
 
 export default defineConfig(({ command }) => {
-  // Netlify автоматично передає NETLIFY=true під час збірки
   const isNetlify = process.env.NETLIFY === 'true';
-  const isGitHubPages = process.env.GITHUB_PAGES === 'true' || process.env.DEPLOY_ENV === 'github';
+  const isBuild = command === 'build';
 
-  let base = '/';
-  if (command === 'build' && isGitHubPages) {
-    base = '/first-react-project/';
-  }
+  // Для Netlify — '/', для GitHub Pages збірки — '/first-react-project/'
+  const base = isBuild && !isNetlify ? '/first-react-project/' : '/';
 
   return {
     base,
