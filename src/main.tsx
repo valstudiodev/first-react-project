@@ -9,7 +9,7 @@ if (!appContainer) {
   throw new Error("Не вдалося знайти кореневий елемент з id 'root'!");
 }
 createRoot(appContainer).render(
-  <BrowserRouter>
+  <BrowserRouter basename={import.meta.env.BASE_URL}>
     <App />
   </BrowserRouter>,
 )
